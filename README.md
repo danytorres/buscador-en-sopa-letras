@@ -1,3 +1,4 @@
+[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=3142768&assignment_repo_type=AssignmentRepo)
 # Word Search Exercise
 
 This challenge involves finding words in an 8x8 grid. Given a string of 64 *letters* and a string of words to find, convert the string to an 8x8 array, and return `true` if _all_ words in the string can be found in the array. Return `false` otherwise. Words can be read in any direction (horizontally, vertically or diagonally).
