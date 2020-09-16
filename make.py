@@ -9,6 +9,9 @@ def makeGrind(letters):
         makeColumnas = wrap(columnas, 1)
         makeColumnas.append("")
         grind.append(makeColumnas)
+    
+    grind.append(["","","","","","","","",""])
+
     return grind
 
 def makeWords(words):

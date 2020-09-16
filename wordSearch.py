@@ -1,37 +1,27 @@
 from textwrap import wrap
-import make
-import barrido
+import make, barrido
+
 
 def wordSearch(letters, words):
     
-    makeWords = make.makeWords(words)
-    grind = make.makeGrind(letters)
-
-    grind.append(["","","","","","","","",""])
-
-    resultado = make.makeRes(words)
+    makeWords = make.makeWords(words) # Separa cada letra del arreglo de palabras 
+    grind = make.makeGrind(letters) # Genera el arreglo 8x8 y pone en minusculas todas las palabras
+    resultado = make.makeRes(words) # Genera un arreglo con valores False con la misma cantindad de palabras a buscar
 
     for x in range(8):
-        for y in range(8):
-            for z in range(len(makeWords)):
-                if grind[x][y] == makeWords[z][0] and grind[x-1][y] == makeWords[z][1] and barrido.up(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x+1][y] == makeWords[z][1] and barrido.down(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x][y-1] == makeWords[z][1] and barrido.left(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x][y+1] == makeWords[z][1] and barrido.rigth(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x-1][y+1] == makeWords[z][1] and barrido.upRigth(grind, x, y, makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x-1][y-1] == makeWords[z][1] and barrido.upLeft(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x+1][y-1] == makeWords[z][1] and barrido.downLeft(grind,x,y,makeWords[z]):
-                    resultado[z] = True
-                elif grind[x][y] == makeWords[z][0] and grind[x+1][y+1] == makeWords[z][1] and barrido.downRigth(grind,x,y,makeWords[z]):
-                    resultado[z] = True
+        for y in range(8): # Recorre el grind generando sus indices x y
+            for z in range(len(makeWords)): # Recorre las palabras y genera su indice z
+                if grind[x][y] == makeWords[z][0]: # Determina si la letra de grind es alguna inicial de alguna palabra
+                    # Realiza barrido de la palabra con indice z en cada una de las direcciones
+                    # Si encuentra toda la palabra cambia a True en el arreglo resultado en la misma posicion que 
+                    # en el arreglo original de palabras 
+                    if barrido.up(grind, x, y, makeWords[z]): resultado[z] = True 
+                    elif barrido.down(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.left(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.rigth(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.upRigth(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.upLeft(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.downLeft(grind, x, y, makeWords[z]): resultado[z] = True
+                    elif barrido.downRigth(grind, x, y, makeWords[z]): resultado[z] = True
 
-    if barrido.resultado(resultado):
-        return True
-    else: 
-        return False
+    return barrido.resultado(resultado) # Revisa si el arreglo de resultado se encontraron todas las palabras 
