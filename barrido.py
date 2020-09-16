@@ -36,7 +36,7 @@ def rigth(grind, x, y, word):
 def upLeft(grind, x, y, word):
     for letter in word:
         if letter == grind[x][y]:
-            x += 1
+            x -= 1
             y -= 1
         else: 
             return False
