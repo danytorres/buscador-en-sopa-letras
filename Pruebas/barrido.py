@@ -1,15 +1,14 @@
 from textwrap import wrap
 import make
 
-# Resive los valores del grind y la posicion (x, y) de la letra donde hubo coincidencia con alguna palabra
-# y la palabra que coincidio, realiza el barrido en cada una de las direcciones y devuelve True si encuentra la palabra, si no 
-# devuelve False
 def up(grind, x, y, word):
     for letter in word:
         if letter == grind[x][y]:
             x -= 1
+            print(grind[x][y])
         else: 
-            return False   
+            print("no se encontro letra "+grind[x][y])
+            return False
     return True
 
 def down(grind, x, y, word):
@@ -72,7 +71,6 @@ def downRigth(grind, x, y, word):
             return False
     return True
 
-# Resive el arreglo de resultado y determina si se encontraron todos los valores 
 def resultado(resultado):
     for x in resultado:
         if x:
